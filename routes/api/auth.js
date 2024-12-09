@@ -1,6 +1,7 @@
 const express = require("express");
 
 // const { validateContact, autenticate, upload } = require("../../middlewares");
+const { autenticate } = require("../../middlewares");
 // const schemas = require("../../schemas/schemContact");
 
 const ctrl = require("../../controllers/auth");
@@ -12,5 +13,8 @@ router.post(
   //   validateContact(schemas.userRegistrSchema),
   ctrl.registerUser
 );
+// router.post("/login", validateContact(schemas.userRegistrSchema), ctrl.login);
+router.post("/login", ctrl.login);
+router.post("/logout", autenticate, ctrl.logout);
 
 module.exports = router;
