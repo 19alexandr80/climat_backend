@@ -12,8 +12,8 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 const { SECRET_KYE } = process.env;
 
 const registerUser = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await UserModel.findOne({ email });
+  const { name, password } = req.body;
+  const user = await UserModel.findOne({ name });
   if (user) {
     throw HttpError(409, "Email in usee");
   }
@@ -29,7 +29,7 @@ const registerUser = async (req, res) => {
   if (!newUser) {
     throw HttpError(404, "Not found");
   }
-  const { email: emailUse, subscription } = newUser;
+  const { name: emailUse, subscription } = newUser;
   //   const message = {
   //     from: process.env.SMTP_USER,
   //     to: email,
@@ -41,19 +41,19 @@ const registerUser = async (req, res) => {
   //   };
   //   await sendActivetionMail(message);
 
-  res.status(201).json({ user: { email: emailUse, subscription } });
+  res.status(201).json({ user: { name: emailUse, subscription } });
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await UserModel.findOne({ email });
+  const { name, password } = req.body;
+  const user = await UserModel.findOne({ name });
 
   if (!user) {
-    throw HttpError(401, "Email or password invalid");
+    throw HttpError(401, "Name or password invalid");
   }
   const passwordCompare = await bcrypt.compare(password, user.password);
   if (!passwordCompare) {
-    throw HttpError(401, "Password or email invalid");
+    throw HttpError(401, "Password or name invalid");
   }
   if (!user.verify) {
     throw HttpError(401, "Not verify");
@@ -62,7 +62,7 @@ const login = async (req, res) => {
   const token = jwt.sign(payloade, SECRET_KYE, { expiresIn: "23h" });
   await UserModel.findByIdAndUpdate(user._id, { token });
   res.status(201).json({
-    user: { email: user.email, subscription: user.subscription, id: user._id },
+    user: { name: user.name, subscription: user.subscription, id: user._id },
     token,
   });
 };

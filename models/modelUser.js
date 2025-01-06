@@ -8,16 +8,15 @@ const userSchama = new Schema(
       minlength: 6,
       required: [true, "Set password for user"],
     },
-    email: {
+    name: {
       type: String,
-      match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       required: [true, "Email is required"],
       unique: true,
     },
     subscription: {
       type: String,
-      enum: ["starter", "admin", "superadmin"],
-      default: "starter",
+      enum: ["client", "admin", "superadmin"],
+      default: "client",
     },
     token: {
       type: String,
