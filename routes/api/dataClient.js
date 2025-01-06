@@ -17,7 +17,7 @@ router.get("/", ctrl.getDataClient);
 
 // router.get("/:contactId", autenticate, isValidId, ctrl.getContactById);
 
-router.get("/:email", autenticate, ctrl.getDataClientByEmail);
+router.get("/:name", autenticate, ctrl.getDataClientByName);
 
 // router.post(
 //   "/",

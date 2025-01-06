@@ -6,7 +6,7 @@ const dataClientSchema = new Schema(
     name: {
       type: String,
       required: true,
-      match: /^[a-zA-Za-яА-Я]+(([' -][a-zA-Za-яА-Я ])?[a-zA-Za-яА-Я]*)*$/,
+      unique: true,
     },
     email: {
       type: String,
@@ -23,6 +23,11 @@ const dataClientSchema = new Schema(
       type: String,
       match: /^[0-9: -/+]+$/,
       required: true,
+    },
+    adminName: {
+      type: String,
+      // required: true,
+      default: "",
     },
     clientObjects: {
       type: [{ nameObj: String, document: [String] }],

@@ -21,10 +21,10 @@ const getDataClient = async (req, res) => {
   const data = await DataClient.find();
   res.json(data);
 };
-const getDataClientByEmail = async (req, res) => {
+const getDataClientByName = async (req, res) => {
   // console.log(req.params.email);
-  const email = req.params.email;
-  const data = await DataClient.find({ email });
+  const name = req.params.name;
+  const data = await DataClient.find({ name });
   if (!data) {
     throw HttpError(404, "Not found");
   }
@@ -44,7 +44,7 @@ const getDataClientByEmail = async (req, res) => {
 
 module.exports = {
   getDataClient: ctrlWrapper(getDataClient),
-  getDataClientByEmail: ctrlWrapper(getDataClientByEmail),
+  getDataClientByName: ctrlWrapper(getDataClientByName),
   addDataClient: ctrlWrapper(addDataClient),
   //   deleteFeedbackById: ctrlWrapper(deleteFeedbackById),
 };
