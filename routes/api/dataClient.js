@@ -16,6 +16,7 @@ const router = express.Router();
 router.get("/", ctrl.getDataClient);
 
 // router.get("/:contactId", autenticate, isValidId, ctrl.getContactById);
+
 router.get("/:email", autenticate, ctrl.getDataClientByEmail);
 
 // router.post(
