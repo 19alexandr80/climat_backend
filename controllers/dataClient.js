@@ -22,8 +22,8 @@ const getDataClient = async (req, res) => {
   res.json(data);
 };
 const getDataClientByEmail = async (req, res) => {
-  console.log(req.body.email);
-  const email = req.body.email;
+  // console.log(req.params.email);
+  const email = req.params.email;
   const data = await DataClient.find({ email });
   if (!data) {
     throw HttpError(404, "Not found");
