@@ -58,7 +58,7 @@ const login = async (req, res) => {
   if (!user.verify) {
     throw HttpError(401, "Not verify");
   }
-  const payloade = { id: user._id };
+  const payloade = { id: user._id, subscription: user.subscription };
   const token = jwt.sign(payloade, SECRET_KYE, { expiresIn: "23h" });
   await UserModel.findByIdAndUpdate(user._id, { token });
   res.status(201).json({
