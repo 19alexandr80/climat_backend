@@ -11,8 +11,7 @@ const dataClientSchema = new Schema(
     email: {
       type: String,
       match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      required: [true, "Email is required"],
-      unique: true,
+      default: "",
     },
     adress: {
       type: String,
