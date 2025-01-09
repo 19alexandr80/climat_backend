@@ -28,15 +28,15 @@ router.get("/:name", autenticate, ctrl.getDataClientByName);
 router.post("/", autenticate, ctrl.addDataClient);
 
 // router.delete("/:contactId", autenticate, isValidId, ctrl.deleteContactById);
-// router.delete("/:contactId", ctrl.deleteFeedbackById);
+router.delete("/adminName/:name", autenticate, ctrl.deleteAdminByName);
 
-// router.patch(
-//   "/:contactId/favorite",
-//   autenticate,
-//   validateContact(schemas.favoriteSchem),
-//   isValidId,
-//   ctrl.updatedFavorite
-// );
+router.patch(
+  "/adminName/:name",
+  autenticate,
+  //   validateContact(schemas.favoriteSchem),
+  //   isValidId,
+  ctrl.changeContact
+);
 
 // router.put(
 //   "/:contactId",

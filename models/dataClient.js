@@ -25,24 +25,21 @@ const dataClientSchema = new Schema(
     adminName: [
       {
         type: String,
-        // required: true,
         default: "",
       },
     ],
-    clientObjects: {
-      type: [{ nameObj: String, document: [String] }],
-      default: [],
-    },
-    magazine: {
-      type: [
-        {
-          action: String,
-          date: Date,
-          comments: String,
-        },
-      ],
-      default: [],
-    },
+    clientObjects: [
+      {
+        type: String,
+        default: "",
+      },
+    ],
+    magazine: [
+      {
+        type: String,
+        default: "",
+      },
+    ],
   },
   { versionKey: false, timestamps: true }
 );
