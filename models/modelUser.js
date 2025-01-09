@@ -37,7 +37,7 @@ const userSchama = new Schema(
   },
   { versionKey: false, timestamps: true }
 );
-
+// db.pets.dropIndex("catIdx");
 userSchama.post("save", handleMongooseError);
 
 const UserModel = model("user", userSchama);

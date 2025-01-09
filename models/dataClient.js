@@ -5,14 +5,12 @@ const dataClientSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: [true, "Name objeckt is required"],
       unique: true,
     },
-    email: {
+    client: {
       type: String,
-      match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      required: [true, "Email is required"],
-      unique: true,
+      required: [true, "Client name is required"],
     },
     adress: {
       type: String,
@@ -24,11 +22,13 @@ const dataClientSchema = new Schema(
       match: /^[0-9: -/+]+$/,
       required: true,
     },
-    adminName: {
-      type: String,
-      // required: true,
-      default: "",
-    },
+    adminName: [
+      {
+        type: String,
+        // required: true,
+        default: "",
+      },
+    ],
     clientObjects: {
       type: [{ nameObj: String, document: [String] }],
       default: [],
