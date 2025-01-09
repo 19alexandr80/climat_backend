@@ -13,7 +13,7 @@ const { autenticate } = require("../../middlewares");
 const router = express.Router();
 
 // router.get("/", autenticate, ctrl.getAllFeedback);
-router.get("/", ctrl.getDataClient);
+router.get("/", autenticate, ctrl.getDataClient);
 
 // router.get("/:contactId", autenticate, isValidId, ctrl.getContactById);
 
@@ -25,7 +25,7 @@ router.get("/:name", autenticate, ctrl.getDataClientByName);
 //   validateContact(schemas.contactSchema),
 //   ctrl.addContact
 // );
-router.post("/", ctrl.addDataClient);
+router.post("/", autenticate, ctrl.addDataClient);
 
 // router.delete("/:contactId", autenticate, isValidId, ctrl.deleteContactById);
 // router.delete("/:contactId", ctrl.deleteFeedbackById);

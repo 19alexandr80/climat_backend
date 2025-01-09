@@ -1,0 +1,18 @@
+https://climat-backend.onrender.com
+user:
+POST.../users/login || {"name": "...","password": "...",}
+       response {"user": {"name": "...","subscription": "...","id": "..."},"token": ""}
+   .../users/register || {"name": "...","password": "...","subscription": "...",}
+       respons {"user": {"name": "...","subscription": "..."}}
+   .../user/logout || Authorization: `Bearer ${token}`
+       respons {status 204}
+
+
+objects:
+POST.../dataClient || {"name": "","client": "","adress": "","adminName": "","phone": "12..."} Authorization: `Bearer ${token}`
+       response {"name": "","client": "","adress": "","phone": "12...","adminName": ["",...],"_id":"","clientObjects": [],"magazine": [],"createdAt:"","updatedAt:"",}
+ 
+GET.../dataClient || Authorization: `Bearer ${token}`
+      response [{"_id": "","name": "","client": "","adress": "","phone": "","adminName": [],"clientObjects": [],"magazine": [],"createdAt": "","updatedAt": ""},...]
+   .../dataClient/{name} || Authorization: `Bearer ${token}`
+      response {"_id": "","name": "","client": "","adress": "","phone": "123...","adminName": [],"clientObjects": [],"magazine": [],"createdAt": "","updatedAt": ""}
