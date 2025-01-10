@@ -12,12 +12,11 @@ const { autenticate } = require("../../middlewares");
 
 const router = express.Router();
 
-// router.get("/", autenticate, ctrl.getAllFeedback);
 router.get("/", autenticate, ctrl.getDataClient);
 
-// router.get("/:contactId", autenticate, isValidId, ctrl.getContactById);
-
 router.get("/:name", autenticate, ctrl.getDataClientByName);
+
+router.get("/adminObjects/:name", autenticate, ctrl.getObjectsClient);
 
 // router.post(
 //   "/",
@@ -30,13 +29,7 @@ router.post("/", autenticate, ctrl.addDataClient);
 // router.delete("/:contactId", autenticate, isValidId, ctrl.deleteContactById);
 router.delete("/adminName/:name", autenticate, ctrl.deleteAdminByName);
 
-router.patch(
-  "/adminName/:name",
-  autenticate,
-  //   validateContact(schemas.favoriteSchem),
-  //   isValidId,
-  ctrl.changeContact
-);
+router.patch("/adminName/:name", autenticate, ctrl.changeContact);
 
 // router.put(
 //   "/:contactId",

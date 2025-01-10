@@ -21,8 +21,15 @@ const getDataClient = async (req, res) => {
   const data = await DataClient.find();
   res.json(data);
 };
+const getObjectsClient = async (req, res) => {
+  const name = req.params.name;
+  const allObjects = await DataClient.find();
+  const objectsAdmin = allObjects.filter((obj) => {
+    return obj.adminName.includes(name);
+  });
+  res.status(200).json(objectsAdmin);
+};
 const getDataClientByName = async (req, res) => {
-  // console.log(req.params.email);
   const name = req.params.name;
   const data = await DataClient.find({ name });
   if (!data) {
@@ -71,6 +78,7 @@ module.exports = {
   getDataClient: ctrlWrapper(getDataClient),
   getDataClientByName: ctrlWrapper(getDataClientByName),
   addDataClient: ctrlWrapper(addDataClient),
+  getObjectsClient: ctrlWrapper(getObjectsClient),
   changeContact: ctrlWrapper(changeContact),
   deleteAdminByName: ctrlWrapper(deleteAdminByName),
   //   deleteFeedbackById: ctrlWrapper(deleteFeedbackById),

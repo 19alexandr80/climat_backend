@@ -16,7 +16,8 @@ GET.../dataClient || Authorization: `Bearer ${token}`
       respons [{"_id": "","name": "","client": "","adress": "","phone": "","adminName": [],"clientObjects": [],"magazine": [],"createdAt": "","updatedAt": ""},...]
    .../dataClient/{name} || Authorization: `Bearer ${token}`
       response {"_id": "","name": "","client": "","adress": "","phone": "123...","adminName": [],"clientObjects": [],"magazine": [],"createdAt": "","updatedAt": ""}
-
+   .../adminObjects/{name} || Authorization: `Bearer ${token}`
+      respons [{"_id": "","name": "","client": "","adress": "","phone": "","adminName": [],"clientObjects": [],"magazine": [],"createdAt": "","updatedAt": ""},...]
 
 PATCH.../dataClient/adminName/{name_object}?adminName={admin_name} || {"chapter": {chapter}} Authorization: `Bearer ${token}`
    respons {"_id": "","name": "","client": "","adress": "","phone": "","adminName": ["",..],"clientObjects": [],"magazine": [],"createdAt": "","updatedAt": "",}
