@@ -16,20 +16,15 @@ router.get("/", autenticate, ctrl.getDataClient);
 
 router.get("/:name", autenticate, ctrl.getDataClientByName);
 
-router.get("/adminObjects/:name", autenticate, ctrl.getObjectsClient);
+router.get("/adminObjects/:name", autenticate, ctrl.getObjectsAdmin);
 
-// router.post(
-//   "/",
-//   autenticate,
-//   validateContact(schemas.contactSchema),
-//   ctrl.addContact
-// );
+router.get("/getObjectClient/:name", ctrl.getObjectsClient);
+
 router.post("/", autenticate, ctrl.addDataClient);
 
-// router.delete("/:contactId", autenticate, isValidId, ctrl.deleteContactById);
-router.delete("/adminName/:name", autenticate, ctrl.deleteAdminByName);
+router.delete("/chapterElement/:name", ctrl.deleteAdminByName);
 
-router.patch("/adminName/:name", autenticate, ctrl.changeContact);
+router.patch("/chapterElement/:name", ctrl.changeContact);
 
 // router.put(
 //   "/:contactId",
