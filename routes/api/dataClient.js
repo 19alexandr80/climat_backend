@@ -18,13 +18,15 @@ router.get("/:name", autenticate, ctrl.getDataClientByName);
 
 router.get("/adminObjects/:name", autenticate, ctrl.getObjectsAdmin);
 
-router.get("/getObjectClient/:name", ctrl.getObjectsClient);
+router.get("/getObjectClient/:name", autenticate, ctrl.getObjectsClient);
 
-router.post("/", autenticate, ctrl.addDataClient);
+router.post("/", ctrl.addDataClient);
 
 router.delete("/chapterElement/:name", ctrl.deleteAdminByName);
 
 router.patch("/chapterElement/:name", ctrl.changeContact);
+
+router.post("/addPhone/:name", ctrl.addPhoneNumber);
 
 // router.put(
 //   "/:contactId",

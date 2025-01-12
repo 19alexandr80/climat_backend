@@ -84,6 +84,24 @@ const changeContact = async (req, res) => {
   res.status(200).json(data);
 };
 
+const addPhoneNumber = async (req, res) => {
+  const newPhone = req.body;
+  const name = req.params.name;
+  const params = { returnDocument: "after" };
+  const allClients = await DataClient.find({ name });
+  if (!allClients) {
+    throw HttpError(404, "Not found");
+  }
+  const adm = allClients[0].phone;
+  const newAdmin = { phone: [...adm, newPhone] };
+  const query = { name: name };
+  const data = await DataClient.findOneAndUpdate(query, newAdmin, params);
+  if (!data) {
+    throw HttpError(500, "servis error");
+  }
+  res.status(200).json(data);
+};
+
 module.exports = {
   getDataClient: ctrlWrapper(getDataClient),
   getDataClientByName: ctrlWrapper(getDataClientByName),
@@ -92,6 +110,7 @@ module.exports = {
   getObjectsClient: ctrlWrapper(getObjectsClient),
   changeContact: ctrlWrapper(changeContact),
   deleteAdminByName: ctrlWrapper(deleteAdminByName),
+  addPhoneNumber: ctrlWrapper(addPhoneNumber),
 
   //   deleteFeedbackById: ctrlWrapper(deleteFeedbackById),
 };

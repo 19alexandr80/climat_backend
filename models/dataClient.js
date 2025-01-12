@@ -17,11 +17,14 @@ const dataClientSchema = new Schema(
       default: "",
       required: true,
     },
-    phone: {
-      type: String,
-      match: /^[0-9: -/+]+$/,
-      required: true,
-    },
+    phone: [
+      {
+        name: {
+          type: String,
+        },
+        number: { type: String, match: /^[0-9: -/+]+$/, required: true },
+      },
+    ],
     adminName: [
       {
         type: String,
@@ -49,3 +52,6 @@ dataClientSchema.post("save", handleMongooseError);
 const DataClient = model("dataClient", dataClientSchema);
 
 module.exports = DataClient;
+// type: String,
+//         match: /^[0-9: -/+]+$/,
+//         required: true,
