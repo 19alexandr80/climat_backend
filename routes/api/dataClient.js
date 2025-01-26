@@ -1,13 +1,10 @@
 const express = require("express");
 
 const ctrl = require("../../controllers/dataClient");
+const upload = require("../../helpers/multer");
 
-// const {
-//   validateContact,
-//   isValidId,
-//   autenticate,
-// } = require("../../middlewares");
 // const schemas = require("../../schemas/schemContact");
+
 const { autenticate } = require("../../middlewares");
 
 const router = express.Router();
@@ -26,7 +23,11 @@ router.delete("/chapterElement/:name", ctrl.deleteAdminByName);
 
 router.patch("/chapterElement/:name", ctrl.changeContact);
 
-router.post("/addPhone/:name", ctrl.addPhoneNumber);
+router.post("/numberPhone/:name", ctrl.addPhoneNumber);
+
+router.delete("/numberPhone/:name", ctrl.deletePhoneByName);
+
+router.post("/upload", upload.single("file"), ctrl.addFile);
 
 // router.put(
 //   "/:contactId",

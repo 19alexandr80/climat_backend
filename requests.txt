@@ -28,7 +28,7 @@ POST.../dataClient || {"name": "",
                 "magazine": [],
                 "createdAt:"",
                 "updatedAt:"",}
-    .../dataClient/addPhone/{name object} || {"name": "",
+    .../dataClient/numberPhone/{name object} || {"name": "",
                                               "number": ""}
                                             Authorization: `Bearer ${token}`
       response {"_id": "",
@@ -126,6 +126,20 @@ DELETE.../dataClient/chapterElement/{name_element}?elementName={element_name} ||
             "magazine": [],
             "createdAt": "",
             "updatedAt": "",}
+    .../dataClient/numberPhone/{name object} || {"name": "",}
+                                            Authorization: `Bearer ${token}`
+      response {"_id": "",
+                "name": "",
+                "client": "",
+                "adress": "",
+                "phone": [{"name": "",
+                           "number": "",
+                           "_id": ""},...]
+                "adminName": ["",...],
+                "clientObjects": [],
+                "magazine": [],
+                "createdAt": "",
+                "updatedAt": "",}
 
 
 ===============================================================================

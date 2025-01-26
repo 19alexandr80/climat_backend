@@ -29,7 +29,6 @@ const getObjectsAdmin = async (req, res) => {
   });
   res.status(200).json(objectsAdmin);
 };
-// =======================================================================
 const getObjectsClient = async (req, res) => {
   const name = req.params.name;
   const allObjects = await DataClient.find();
@@ -38,7 +37,6 @@ const getObjectsClient = async (req, res) => {
   });
   res.status(200).json(objectsAdmin);
 };
-// =========================================================================
 const getDataClientByName = async (req, res) => {
   const name = req.params.name;
   const data = await DataClient.find({ name });
@@ -101,6 +99,30 @@ const addPhoneNumber = async (req, res) => {
   }
   res.status(200).json(data);
 };
+const deletePhoneByName = async (req, res) => {
+  const nameObj = req.params.name;
+  const name = req.body.name;
+  const allClients = await DataClient.find({ name: nameObj });
+  if (!allClients) {
+    throw HttpError(404, "Not found");
+  }
+  const adm = allClients[0].phone.filter((number) => number.name !== name);
+  const newAdmin = { phone: [...adm] };
+  const query = { name: nameObj };
+  const params = { returnDocument: "after" };
+  const data = await DataClient.findOneAndUpdate(query, newAdmin, params);
+  if (!data) {
+    throw HttpError(500, "servis error");
+  }
+  res.status(200).json(data);
+};
+// ======================================================
+const addFile = async (req, res, next) => {
+  console.log(req.file);
+  console.log(req.body);
+  res.json(req.file.path);
+};
+// ======================================================
 
 module.exports = {
   getDataClient: ctrlWrapper(getDataClient),
@@ -111,6 +133,8 @@ module.exports = {
   changeContact: ctrlWrapper(changeContact),
   deleteAdminByName: ctrlWrapper(deleteAdminByName),
   addPhoneNumber: ctrlWrapper(addPhoneNumber),
+  deletePhoneByName: ctrlWrapper(deletePhoneByName),
+  addFile: ctrlWrapper(addFile),
 
   //   deleteFeedbackById: ctrlWrapper(deleteFeedbackById),
 };
