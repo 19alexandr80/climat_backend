@@ -19,6 +19,7 @@ const createFolderIsNotExist = async (folder) => {
   }
 };
 const UPLOAD_DIR = path.join(__dirname, process.env.UPLOAD_DIR);
+const FILE_STORAGE = path.join(__dirname, "pablic", process.env.FILE_STORAGE);
 // =====================================================================
 
 mongoose
@@ -26,6 +27,7 @@ mongoose
   .then(() => {
     app.listen(3707, async () => {
       await createFolderIsNotExist(UPLOAD_DIR);
+      await createFolderIsNotExist(FILE_STORAGE);
       console.log("Server running. Use our API on port: 3707");
     });
   })

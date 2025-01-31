@@ -29,6 +29,8 @@ router.delete("/numberPhone/:name", ctrl.deletePhoneByName);
 
 router.post("/upload", upload.single("file"), ctrl.addFile);
 
+router.delete("/upload", upload.single("file"), ctrl.deleteFile);
+
 // router.put(
 //   "/:contactId",
 //   autenticate,

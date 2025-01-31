@@ -1,9 +1,10 @@
 const DataClient = require("../models/dataClient");
 const { HttpError, ctrlWrapper } = require("../helpers");
 
+const fs = require("fs").promises;
+const path = require("path");
+
 const addDataClient = async (req, res) => {
-  //   console.log(req);
-  //   const { _id: owner } = req.feedback;
   const data = await DataClient.create({ ...req.body });
   if (!data) {
     throw HttpError(404, "Not found");
@@ -118,9 +119,44 @@ const deletePhoneByName = async (req, res) => {
 };
 // ======================================================
 const addFile = async (req, res, next) => {
-  console.log(req.file);
   console.log(req.body);
-  res.json(req.file.path);
+  const fileDir = req.file.path;
+  const FILE_STORAGE = path.join(
+    process.cwd(),
+    "pablic",
+    process.env.FILE_STORAGE,
+    req.file.originalname
+  );
+  if (req.file) {
+    await fs.rename(fileDir, FILE_STORAGE);
+  }
+  // _____________________________________________________
+  // const newPhone = req.body;
+  const name = req.body.nameUser;
+  console.log(name);
+  const params = { returnDocument: "after" };
+  const allClients = await DataClient.find({ name });
+  if (!allClients) {
+    throw HttpError(404, "Not found");
+  }
+  console.log(allClients);
+  const adm = allClients[0].clientObjects;
+  const newfile = { clientObjects: [...adm, FILE_STORAGE] };
+  const query = { name: name };
+  const data = await DataClient.findOneAndUpdate(query, newfile, params);
+  if (!data) {
+    throw HttpError(500, "servis error");
+  }
+  // ____________________________________________________
+  res.json(data);
+};
+
+const deleteFile = async (req, res, next) => {
+  const deleteFile = req.body.dirFile;
+
+  await fs.unlink(deleteFile);
+
+  res.json(deleteFile);
 };
 // ======================================================
 
@@ -135,6 +171,7 @@ module.exports = {
   addPhoneNumber: ctrlWrapper(addPhoneNumber),
   deletePhoneByName: ctrlWrapper(deletePhoneByName),
   addFile: ctrlWrapper(addFile),
+  deleteFile: ctrlWrapper(deleteFile),
 
   //   deleteFeedbackById: ctrlWrapper(deleteFeedbackById),
 };
