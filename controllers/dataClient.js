@@ -119,7 +119,7 @@ const deletePhoneByName = async (req, res) => {
 };
 // ======================================================
 const addFile = async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const fileDir = req.file.path;
   const FILE_STORAGE = path.join(
     process.cwd(),
@@ -131,15 +131,12 @@ const addFile = async (req, res, next) => {
     await fs.rename(fileDir, FILE_STORAGE);
   }
   // _____________________________________________________
-  // const newPhone = req.body;
   const name = req.body.nameUser;
-  console.log(name);
   const params = { returnDocument: "after" };
   const allClients = await DataClient.find({ name });
   if (!allClients) {
     throw HttpError(404, "Not found");
   }
-  console.log(allClients);
   const adm = allClients[0].clientObjects;
   const newfile = { clientObjects: [...adm, FILE_STORAGE] };
   const query = { name: name };
