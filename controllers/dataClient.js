@@ -102,12 +102,15 @@ const addPhoneNumber = async (req, res) => {
 };
 const deletePhoneByName = async (req, res) => {
   const nameObj = req.params.name;
-  const name = req.body.name;
+  const id = req.body.id;
   const allClients = await DataClient.find({ name: nameObj });
   if (!allClients) {
     throw HttpError(404, "Not found");
   }
-  const adm = allClients[0].phone.filter((number) => number.name !== name);
+  const adm = allClients[0].phone.filter((number) => {
+    return String(number._id) !== id;
+  });
+
   const newAdmin = { phone: [...adm] };
   const query = { name: nameObj };
   const params = { returnDocument: "after" };

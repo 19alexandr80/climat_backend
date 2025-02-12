@@ -126,7 +126,7 @@ DELETE.../dataClient/chapterElement/{name_element}?elementName={element_name} ||
             "magazine": [],
             "createdAt": "",
             "updatedAt": "",}
-    .../dataClient/numberPhone/{name object} || {"name": "",}
+    .../dataClient/numberPhone/{name object} || {"id": "",}
                                             Authorization: `Bearer ${token}`
       response {"_id": "",
                 "name": "",
