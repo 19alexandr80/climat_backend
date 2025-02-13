@@ -48,8 +48,8 @@ const getDataClientByName = async (req, res) => {
 };
 const deleteAdminByName = async (req, res) => {
   const name = req.params.name;
-  const chapter = req.body.chapter;
-  const adminName = req.query.elementName;
+  const chapter = req.query.chapter;
+  const adminName = req.body.elementName;
   const allClients = await DataClient.find({ name });
   if (!allClients) {
     throw HttpError(404, "Not found");
