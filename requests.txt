@@ -97,7 +97,7 @@ GET.../dataClient || Authorization: `Bearer ${token}`
                 "createdAt": "",
                 "updatedAt": ""},...]
 
-PATCH.../dataClient/chapterElement/{name_element}?elementName={element_name} || {"chapter": {chapter}} 
+PATCH.../dataClient/chapterElement/{name_element}?chapter=chapter || {"elementName": {element_name}}
                                                                       Authorization: `Bearer ${token}`
    respons {"_id": "",
             "name": "",

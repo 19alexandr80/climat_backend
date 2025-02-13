@@ -65,9 +65,9 @@ const deleteAdminByName = async (req, res) => {
   res.status(200).json(data);
 };
 const changeContact = async (req, res) => {
-  const chapter = req.body.chapter;
+  const chapter = req.query.chapter;
   const name = req.params.name;
-  const adminName = req.query.elementName;
+  const adminName = req.body.elementName;
   const params = { returnDocument: "after" };
   const allClients = await DataClient.find({ name });
   if (!allClients) {
