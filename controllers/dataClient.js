@@ -54,7 +54,13 @@ const deleteAdminByName = async (req, res) => {
   if (!allClients) {
     throw HttpError(404, "Not found");
   }
-  const adm = allClients[0][chapter].filter((adm) => adm !== adminName);
+  const adm = allClients[0][chapter].filter((ad) => {
+    if (ad._id) {
+      return String(ad._id) !== adminName;
+    }
+
+    return ad !== adminName;
+  });
   const newAdmin = { [chapter]: [...adm] };
   const query = { name: name };
   const params = { returnDocument: "after" };
@@ -122,7 +128,6 @@ const deletePhoneByName = async (req, res) => {
 };
 // ======================================================
 const addFile = async (req, res, next) => {
-  // console.log(req.body);
   const fileDir = req.file.path;
   const FILE_STORAGE = path.join(
     process.cwd(),
