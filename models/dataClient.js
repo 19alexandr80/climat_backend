@@ -39,8 +39,13 @@ const dataClientSchema = new Schema(
     ],
     magazine: [
       {
-        type: String,
-        default: "",
+        note: {
+          type: String,
+        },
+        date: {
+          type: Date,
+          default: Date.now(),
+        },
       },
     ],
   },
