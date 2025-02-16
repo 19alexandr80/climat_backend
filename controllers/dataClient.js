@@ -126,6 +126,25 @@ const deletePhoneByName = async (req, res) => {
   }
   res.status(200).json(data);
 };
+// =========================================================
+const getMagazine = async (req, res) => {
+  const name = req.params.name;
+  const objectData = await DataClient.find({ name });
+  if (!objectData) {
+    throw HttpError(404, "Not found");
+  }
+  const magazineAll = objectData[0].magazine.reverse();
+  const noteLength = magazineAll.length;
+  const pageStart = ((req.query?.page || 1) - 1) * 10;
+  const pageEnd = pageStart + 10 > noteLength ? noteLength : pageStart + 10;
+  const mgazine = magazineAll.slice(pageStart, pageEnd);
+  const data = {
+    noteLength,
+    mgazine,
+  };
+
+  res.status(200).json(data);
+};
 // ======================================================
 const addFile = async (req, res, next) => {
   const fileDir = req.file.path;
@@ -175,6 +194,7 @@ module.exports = {
   deleteAdminByName: ctrlWrapper(deleteAdminByName),
   addPhoneNumber: ctrlWrapper(addPhoneNumber),
   deletePhoneByName: ctrlWrapper(deletePhoneByName),
+  getMagazine: ctrlWrapper(getMagazine),
   addFile: ctrlWrapper(addFile),
   deleteFile: ctrlWrapper(deleteFile),
 

@@ -96,6 +96,9 @@ GET.../dataClient || Authorization: `Bearer ${token}`
                 "magazine": [],
                 "createdAt": "",
                 "updatedAt": ""},...]
+   .../dataClient/magazine/{name client}?page={page} || Authorization: `Bearer ${token}`
+      respons {"noteLength": number,
+                "mgazine":[]}
 
 PATCH.../dataClient/chapterElement/{name_element}?chapter=chapter || {"elementName": {element_name}}
                                                                       Authorization: `Bearer ${token}`

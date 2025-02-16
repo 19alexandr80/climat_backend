@@ -27,6 +27,10 @@ router.post("/numberPhone/:name", ctrl.addPhoneNumber);
 
 router.delete("/numberPhone/:name", ctrl.deletePhoneByName);
 
+// ===========================================
+router.get("/magazine/:name", ctrl.getMagazine);
+// ==========================================
+
 router.post("/upload", upload.single("file"), ctrl.addFile);
 
 router.delete("/upload", upload.single("file"), ctrl.deleteFile);
