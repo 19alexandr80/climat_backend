@@ -80,7 +80,7 @@ GET.../dataClient || Authorization: `Bearer ${token}`
                 "magazine": [],
                 "createdAt": "",
                 "updatedAt": ""}
-   .../dataClient/adminObjects/{name admin} || Authorization: `Bearer ${token}`
+   .../dataClient/adminObjects/{name_admin} || Authorization: `Bearer ${token}`
       respons [{"_id": "",
                 "name": "",
                 "client": "",
@@ -93,7 +93,7 @@ GET.../dataClient || Authorization: `Bearer ${token}`
                 "magazine": [],
                 "createdAt": "",
                 "updatedAt": ""},...]
-   .../dataClient/getObjectClient/{name client} || Authorization: `Bearer ${token}`
+   .../dataClient/getObjectClient/{name_client} || Authorization: `Bearer ${token}`
       respons [{"_id": "",
                 "name": "",
                 "client": "name client",
@@ -106,11 +106,11 @@ GET.../dataClient || Authorization: `Bearer ${token}`
                 "magazine": [],
                 "createdAt": "",
                 "updatedAt": ""},...]
-   .../dataClient/magazine/{name client}?page={page} || Authorization: `Bearer ${token}`
+   .../dataClient/magazine/{name_obgect}?page={page} || Authorization: `Bearer ${token}`
       respons {"noteLength": number,
                 "mgazine":[]}
 
-PATCH.../dataClient/chapterElement/{name_element}?chapter=chapter || {"elementName": {element_name}}
+PATCH.../dataClient/chapterElement/{name_obgect //or// id}?chapter=chapter || {"elementName": {element_name}}
                                                                       Authorization: `Bearer ${token}`
    respons {"_id": "",
             "name": "",
@@ -125,7 +125,7 @@ PATCH.../dataClient/chapterElement/{name_element}?chapter=chapter || {"elementNa
             "createdAt": "",
             "updatedAt": "",}
 
-DELETE.../dataClient/chapterElement/{name_element}?elementName={element_name} || {"chapter": {chapter}} 
+DELETE.../dataClient/chapterElement/{name_object //or// id}?chapter={chapter} || {"elementName": {elementName}} 
                                                                        Authorization: `Bearer ${token}`
    respons {"_id": "",
             "name": "",
