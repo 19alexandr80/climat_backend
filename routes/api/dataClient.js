@@ -15,7 +15,7 @@ router.get("/:name", autenticate, ctrl.getDataClientByName);
 
 router.get("/adminObjects/:name", autenticate, ctrl.getObjectsAdmin);
 
-router.get("/getObjectClient/:name", autenticate, ctrl.getObjectsClient);
+router.get("/getObjectClient/:name", ctrl.getObjectsClient);
 
 router.post("/", ctrl.addDataClient);
 

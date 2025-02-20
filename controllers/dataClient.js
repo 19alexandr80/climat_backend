@@ -33,10 +33,10 @@ const getObjectsAdmin = async (req, res) => {
 const getObjectsClient = async (req, res) => {
   const name = req.params.name;
   const allObjects = await DataClient.find();
-  const objectsAdmin = allObjects.filter((obj) => {
+  const objectsClient = allObjects.filter((obj) => {
     return obj.client.includes(name);
   });
-  res.status(200).json(objectsAdmin);
+  res.status(200).json(objectsClient);
 };
 const getDataClientByName = async (req, res) => {
   const name = req.params.name;

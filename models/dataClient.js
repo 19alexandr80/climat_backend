@@ -8,10 +8,12 @@ const dataClientSchema = new Schema(
       required: [true, "Name objeckt is required"],
       unique: true,
     },
-    client: {
-      type: String,
-      required: [true, "Client name is required"],
-    },
+    client: [
+      {
+        type: String,
+        default: "no client",
+      },
+    ],
     adress: {
       type: String,
       default: "",

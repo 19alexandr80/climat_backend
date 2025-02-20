@@ -16,5 +16,10 @@ router.post(
 // router.post("/login", validateContact(schemas.userRegistrSchema), ctrl.login);
 router.post("/login", ctrl.login);
 router.post("/logout", autenticate, ctrl.logout);
+router.get("/allUsers", ctrl.getAllUser);
+router.delete("/deleteUser", ctrl.deletewUser);
+router.patch("/changePassword", ctrl.changePassword);
+
+// changePassword
 
 module.exports = router;

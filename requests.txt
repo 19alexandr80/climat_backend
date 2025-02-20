@@ -4,8 +4,18 @@ POST.../users/login || {"name": "...","password": "...",}
        respons {"user": {"name": "...","subscription": "...","id": "..."},"token": ""}
    .../users/register || {"name": "...","password": "...","subscription": "...",}
        respons {"user": {"name": "...","subscription": "..."}}
-   .../user/logout || Authorization: `Bearer ${token}`
+   .../users/logout || Authorization: `Bearer ${token}`
        respons {status 204}
+GET.../users/allUsers || Authorization: `Bearer ${token}`
+        respons [{"name": "",
+                   "subscription": ""},...]
+PATCH.../user/changePassword || {"name": "",
+                                "password": "",
+                                "newPassword": ""}
+        respons {"user": {
+                          "name": ""}}
+DELETE.../users/deleteUser || {id:""} Authorization: `Bearer ${token}`
+       respons {"name":"", "subscription": ""}
 
 
 objects:

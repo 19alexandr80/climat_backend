@@ -72,12 +72,61 @@ const logout = async (req, res) => {
   await UserModel.findByIdAndUpdate(user._id, { token: "" });
   res.status(204).json();
 };
+// ================================================================================
+const getAllUser = async (_, res) => {
+  const users = await UserModel.find();
+  if (!users) {
+    throw HttpError(404, "Not found");
+  }
+  const allUs = users.map((us) => {
+    const usAll = { name: us.name, id: us._id, subscription: us.subscription };
+    return usAll;
+  });
+  res.status(201).json(allUs);
+};
+// ================================================================================
+const deletewUser = async (req, res) => {
+  const users = await UserModel.find();
+  const id = req.body.id;
+  if (!users) {
+    throw HttpError(404, "Not found");
+  }
+  const deleteUser = await UserModel.findByIdAndDelete({ _id: id });
+
+  res
+    .status(201)
+    .json({ name: deleteUser.name, subscription: deleteUser.subscription });
+};
+// ==================================================================================
+const changePassword = async (req, res) => {
+  const { name, password, newPassword } = req.body;
+  const user = await UserModel.findOne({ name });
+
+  if (!user) {
+    throw HttpError(401, "Name or password invalid");
+  }
+  const passwordCompare = await bcrypt.compare(password, user.password);
+  if (!passwordCompare) {
+    throw HttpError(401, "Password or name invalid");
+  }
+  if (!user.verify) {
+    throw HttpError(401, "Not verify");
+  }
+  const hashNewPassword = await bcrypt.hash(newPassword, 10);
+  await UserModel.findByIdAndUpdate(user._id, { password: hashNewPassword });
+  res.status(201).json({
+    user: { name: user.name },
+  });
+};
+// ==================================================================================
 
 module.exports = {
   registerUser: ctrlWrapper(registerUser),
   login: ctrlWrapper(login),
-  //   current: ctrlWrapper(current),
+  getAllUser: ctrlWrapper(getAllUser),
   logout: ctrlWrapper(logout),
+  deletewUser: ctrlWrapper(deletewUser),
+  changePassword: ctrlWrapper(changePassword),
   //   nweAvatar: ctrlWrapper(nweAvatar),
   //   authVerify: ctrlWrapper(authVerify),
   //   verify: ctrlWrapper(verify),
