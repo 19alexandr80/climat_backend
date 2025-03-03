@@ -153,6 +153,8 @@ DELETE.../dataClient/chapterElement/{name_object}?chapter={chapter} || {"element
                 "magazine": [],
                 "createdAt": "",
                 "updatedAt": "",}
+    .../deleteObject/:id || Authorization: `Bearer ${token}`
+      response {"name": ""}
 
 
 ===============================================================================

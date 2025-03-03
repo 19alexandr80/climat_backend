@@ -126,7 +126,6 @@ const deletePhoneByName = async (req, res) => {
   }
   res.status(200).json(data);
 };
-// =========================================================
 const getMagazine = async (req, res) => {
   const name = req.params.name;
   const objectData = await DataClient.find({ name });
@@ -146,6 +145,16 @@ const getMagazine = async (req, res) => {
   res.status(200).json(data);
 };
 // ======================================================
+const deleteObjectById = async (req, res, _) => {
+  const id = req.params.id;
+  const data = await DataClient.find({ _id: id });
+  if (!data) {
+    throw HttpError(404, "Not found");
+  }
+  const deleteUser = await DataClient.findByIdAndDelete(id);
+  res.json(deleteUser.name);
+};
+// =======================================================
 const addFile = async (req, res, next) => {
   const fileDir = req.file.path;
   const FILE_STORAGE = path.join(
@@ -195,8 +204,7 @@ module.exports = {
   addPhoneNumber: ctrlWrapper(addPhoneNumber),
   deletePhoneByName: ctrlWrapper(deletePhoneByName),
   getMagazine: ctrlWrapper(getMagazine),
+  deleteObjectById: ctrlWrapper(deleteObjectById),
   addFile: ctrlWrapper(addFile),
   deleteFile: ctrlWrapper(deleteFile),
-
-  //   deleteFeedbackById: ctrlWrapper(deleteFeedbackById),
 };
